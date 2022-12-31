@@ -1,0 +1,22 @@
+{
+  "name": "doix-http",
+  "version": "0.0.1",
+  "description": "The code in this repository is at early alpha stage.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/do-/node-doix-http.git"
+  },
+  "author": "Dmitry Ovsyanko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/do-/node-doix-http/issues"
+  },
+  "homepage": "https://github.com/do-/node-doix-http#readme",
+  "dependencies": {
+    "doix": "^0.0.18"
+  }
+}
