@@ -1,2 +1,2 @@
 # node-doix-http
-doix HTTP binding
+The code in this repository is at early alpha stage.
