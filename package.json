@@ -1,6 +1,6 @@
 {
   "name": "doix-http",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "The code in this repository is at early alpha stage.",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/do-/node-doix-http#readme",
   "peerDependencies": {
-    "doix": "^0.0.28"
+    "doix": "^0.0.37"
   },
   "dependencies": {
     "mime-db": "^1.52.0"
