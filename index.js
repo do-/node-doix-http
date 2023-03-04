@@ -1,4 +1,5 @@
 module.exports = {
+	Cookie: require ('./lib/Cookie.js'),
 	HttpRequestContext: require ('./lib/HttpRequestContext.js'),
 	HttpRouter: require ('./lib/HttpRouter.js'),
 	HttpRouterEventLogger: require ('./lib/HttpRouterEventLogger.js'),
