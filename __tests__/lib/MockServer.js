@@ -11,6 +11,7 @@ module.exports = {
 		if (!o.listen.port) o.listen.port = 8000
 
 		if (!o.requestOptions) o.requestOptions = {}
+		if (o.requestOptions.body == null) o.requestOptions.body = ''
 
 		const {listen, service, path, requestOptions} = o
 
@@ -24,17 +25,17 @@ module.exports = {
 
 			const rp = await new Promise ((ok, fail) => {
 
-				service.on ('error', () => 0)
-
 				const rq = http.request (`http://${listen.host}:${listen.port}${path}`, requestOptions, ok)
 
-				rq.end ()
+				rq.end (requestOptions.body)
 
 			})
 
 			const a = []; for await (b of rp) a.push (b)
 
 			rp.responseText = Buffer.concat (a).toString ()
+			
+			if (rp.headers ['content-type'] === 'application/json; charset=utf-8') rp.responseJson = JSON.parse (rp.responseText)
 
 			return rp
 
