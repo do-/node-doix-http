@@ -27,9 +27,9 @@ module.exports = class extends Application {
 
 	}
 	
-	createBackService () {
-		
-		return new BackService (this)
+	createBackService (o = {}) {
+
+		return new BackService (this, o)
 	
 	}
 

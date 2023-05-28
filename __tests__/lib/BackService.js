@@ -2,7 +2,7 @@ const {WebService, HttpParamReader, HttpResultWriter} = require ('../..')
 
 module.exports = class extends WebService {
 
-	constructor (app) {
+	constructor (app, o) {
 		
 	    super (app, {
 	    
@@ -63,6 +63,8 @@ module.exports = class extends WebService {
 				)
 				
 			}),
+			
+			...o
 
 	    })
 
