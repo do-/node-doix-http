@@ -2,6 +2,7 @@ const Path = require ('path')
 const Application = require ('./lib/Application.js')
 const {getResponse} = require ('./lib/MockServer.js')
 const {WebService} = require ('..')
+const {HttpStaticSite} = require ('..')
 
 const app = () => {
 
@@ -13,15 +14,17 @@ const app = () => {
 
 async function getResponseFromWebService (path, requestOptions, serviceOptions) {
 
-	const service = app ().createBackService (serviceOptions)
+	return getResponse ({service: [
 
-	return getResponse ({service, path, requestOptions})
+		app ().createBackService (serviceOptions),
+
+		new HttpStaticSite ({root: Path.resolve ('__tests__/data')}),
+
+	], path, requestOptions})
 
 }
 
 test ('constructor', () => {
-
-//	expect (new WebService (app ())).toBeInstanceOf (WebService)
 
 	expect (() => app ().createBackService ({location: 1})).toThrow ()
 
@@ -53,6 +56,14 @@ test ('450', async () => {
 
 test ('location', async () => {
 
+	const rp = await getResponseFromWebService ('/back/?type=users', {method: 'POST', body: '{}'}, {location: '/back/?type=users'})
+
+	expect (rp.statusCode).toBe (200)
+
+})
+
+test ('location', async () => {
+
 	const rp = await getResponseFromWebService ('/back/?type=users', {method: 'POST', body: '{}'}, {location: '/back'})
 
 	expect (rp.statusCode).toBe (200)
@@ -64,5 +75,21 @@ test ('location_re', async () => {
 	const rp = await getResponseFromWebService ('/back/?type=users', {}, {location: /^\/back/})
 
 	expect (rp.statusCode).toBe (405)
+
+})
+
+test ('location_miss', async () => {
+
+	const rp = await getResponseFromWebService ('/black/?type=users', {method: 'POST', body: '{}'}, {location: '/back'})
+
+	expect (rp.statusCode).toBe (404)
+
+})
+
+test ('location_/', async () => {
+
+	const rp = await getResponseFromWebService ('/back/?type=users', {method: 'POST', body: '{}'}, {location: '/back/'})
+
+	expect (rp.statusCode).toBe (404)
 
 })

@@ -18,8 +18,8 @@ module.exports = {
 		try {
 
 			var r = new HttpRouter ({listen, logger: ConsoleLogger.DEFAULT})
-
-			r.add (service)
+			
+			for (const s of Array.isArray (service) ? service : [service]) r.add (s)
 
 			r.listen ()
 
