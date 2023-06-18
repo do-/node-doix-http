@@ -17,13 +17,13 @@ module.exports = class extends WebService {
 
 			on: {
 
-				error : (job, error) => {
+				error : function (error) {
 
 					if (typeof error === 'string') error = Error (error)
 					
 					while (error.cause) error = error.cause
 					
-					job.error = error
+					this.error = error
 
 				},
 
