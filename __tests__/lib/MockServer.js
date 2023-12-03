@@ -2,13 +2,15 @@ const http = require ('http')
 const {HttpRouter} = require ('../..')
 const {ConsoleLogger} = require ('doix')
 
+let port = 8010
+
 module.exports = {
 
 	getResponse: async function (o) {
 
 		if (!o.listen) o.listen = {}
 		if (!o.listen.host) o.listen.host = '127.0.0.1'
-		if (!o.listen.port) o.listen.port = 8000
+		if (!o.listen.port) o.listen.port = ++ port
 
 		if (!o.requestOptions) o.requestOptions = {}
 		if (o.requestOptions.body == null) o.requestOptions.body = ''
