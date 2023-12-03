@@ -1,7 +1,6 @@
 const Path = require ('path')
 const Application = require ('./lib/Application.js')
 const {getResponse} = require ('./lib/MockServer.js')
-const {WebService} = require ('..')
 const {HttpStaticSite} = require ('..')
 
 const app = () => {
