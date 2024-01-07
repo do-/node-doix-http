@@ -1,5 +1,6 @@
 module.exports = {
 	Cookie: require ('./lib/Cookie.js'),
+	CookieSession: require ('./lib/CookieSession.js'),
 	HttpRequestContext: require ('./lib/HttpRequestContext.js'),
 	HttpRouter: require ('./lib/HttpRouter.js'),
 	HttpRouterLifeCycleTracker: require ('./lib/HttpRouterLifeCycleTracker.js'),

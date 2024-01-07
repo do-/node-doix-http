@@ -10,8 +10,6 @@ module.exports = class extends Application {
 	    	
 	    	logger: ConsoleLogger.DEFAULT,
 /*	    
-			globals: {
-			},
 
 			pools: {
 			},
@@ -24,6 +22,8 @@ module.exports = class extends Application {
 			},
 
 	    })
+
+		this.sessions = {}
 
 	}
 	
