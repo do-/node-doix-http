@@ -1,6 +1,6 @@
 {
   "name": "doix-http",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "HTTP binding for doix",
   "main": "index.js",
   "files": ["/lib", "/badges"],
@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/do-/node-doix-http#readme",
   "peerDependencies": {
-    "doix": "^1.0.7"
+    "doix": "^1.0.17"
   },
   "devDependencies": {
     "jest": "^29.3.1"
