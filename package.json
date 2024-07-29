@@ -1,24 +1,33 @@
 {
   "name": "doix-http",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "HTTP binding for doix",
   "main": "index.js",
-  "files": ["/lib", "/badges"],
+  "files": [
+    "/lib",
+    "/badges"
+  ],
   "scripts": {
     "test": "jest",
     "test-ci": "jest --ci --coverage"
   },
   "jest": {
-	"collectCoverageFrom": [
-		"lib/**/*.js"
-	],
-	"coverageReporters": ["clover", "json", "lcov", "text", "json-summary"],
-  	"verbose": false,
-  	"testPathIgnorePatterns": [
-  		"/node_modules/",
-  		"/__tests__/data",
-  		"/__tests__/lib"
-  	]
+    "collectCoverageFrom": [
+      "lib/**/*.js"
+    ],
+    "coverageReporters": [
+      "clover",
+      "json",
+      "lcov",
+      "text",
+      "json-summary"
+    ],
+    "verbose": false,
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/__tests__/data",
+      "/__tests__/lib"
+    ]
   },
   "repository": {
     "type": "git",
@@ -31,12 +40,13 @@
   },
   "homepage": "https://github.com/do-/node-doix-http#readme",
   "peerDependencies": {
-    "doix": "^1.0.27"
+    "doix": "^1.0.32"
   },
   "devDependencies": {
     "jest": "^29.3.1"
   },
   "dependencies": {
-    "mime-db": "^1.52.0"
+    "mime-db": "^1.52.0",
+    "subclassable-object-merger": "^1.0.0"
   }
 }

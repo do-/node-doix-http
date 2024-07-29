@@ -1,5 +1,5 @@
 const {HttpParamReader} = require ('..')
-const {ObjectMerger} = require ('doix')
+const {ObjectMerger} = require ('subclassable-object-merger')
 
 test ('constructor', () => {
 
