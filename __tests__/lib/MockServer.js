@@ -27,7 +27,7 @@ module.exports = {
 
 		try {
 
-			var r = new HttpRouter ({listen, logger})
+			var r = new HttpRouter ({name: 'httpEndPoint', listen, logger})
 			
 			for (const s of Array.isArray (service) ? service : [service]) r.add (s)
 

@@ -1,14 +1,17 @@
 const {HttpRouter} = require ('..')
 
-test ('constructor', async () => {
-
-	new HttpRouter ({listen: {port: 8001}, logger: null})
-
+const {Writable} = require ('stream')
+const winston = require ('winston')
+const logger = winston.createLogger({
+	transports: [
+//	  new winston.transports.Console (),
+	  new winston.transports.Stream ({stream: new Writable ({write(){}})})
+	]
 })
 
 test ('listen', async () => {
 
-	const r = new HttpRouter ({listen: {port: 8002}})
+	const r = new HttpRouter ({name: 'httpEndPoint', logger, listen: {port: 8002}})
 		
 	let f = false
 	
