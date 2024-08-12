@@ -5,6 +5,8 @@ module.exports = class extends WebService {
 	constructor (app, o) {
 		
 	    super (app, {
+
+			name: 'webBackEnd',
 	    
 			methods: ['POST'],
 

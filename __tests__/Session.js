@@ -2,7 +2,7 @@ const Path = require ('path')
 const Application = require ('./lib/Application.js')
 const TestCookieSession = require ('./lib/TestCookieSession.js')
 const {getResponse} = require ('./lib/MockServer.js')
-const {HttpStaticSite, CookieSession} = require ('..')
+const {HttpStaticSite} = require ('..')
  
 const newApp = () => {
 
