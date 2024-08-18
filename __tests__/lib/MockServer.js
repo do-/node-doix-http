@@ -1,5 +1,5 @@
 const http = require ('http')
-const {HttpRouter} = require ('../..')
+const {HttpRouter} = require ('protocol-agnostic-router')
 
 const {Writable} = require ('stream')
 const winston = require ('winston')

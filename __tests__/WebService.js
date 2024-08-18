@@ -1,7 +1,7 @@
 const Path = require ('path')
 const Application = require ('./lib/Application.js')
 const {getResponse} = require ('./lib/MockServer.js')
-const {HttpStaticSite} = require ('..')
+const {HttpStaticSite} = require ('protocol-agnostic-router')
 
 const app = () => {
 

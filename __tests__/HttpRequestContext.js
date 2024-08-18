@@ -1,12 +1,12 @@
 const  http      = require ('http')
 const {Readable} = require ('stream')
-const {HttpRequestContext} = require ('..')
+const {HttpRequestContext} = require ('protocol-agnostic-router')
 
 test ('searchParams', () => {
 
-	const c = new HttpRequestContext ({url: '/?type=users&id=1'}, {})
+	const c = new HttpRequestContext ({url: '/?type=users&id=1', headers: {host: 'http://127.0.0.1/'}}, {})
 
-	expect ([...c.searchParams]).toStrictEqual ([['type', 'users'], ['id', '1']])
+	expect (Object.entries (c.searchParams)).toStrictEqual ([['type', 'users'], ['id', '1']])
 
 })
 

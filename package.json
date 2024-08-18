@@ -1,6 +1,6 @@
 {
   "name": "doix-http",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "HTTP binding for doix",
   "main": "index.js",
   "files": [
@@ -40,7 +40,8 @@
   },
   "homepage": "https://github.com/do-/node-doix-http#readme",
   "peerDependencies": {
-    "doix": "^1.0.42"
+    "doix": "^1.0.44",
+    "protocol-agnostic-router": "^1.0.0"
   },
   "devDependencies": {
     "jest": "^29.3.1"
