@@ -2,25 +2,21 @@ module.exports = {
     
 ////////////////////////////////////////////////////////////////////////////////
 
-do_create_sessions:
+getList:
 
     function () {
 
-      this.user = {id: 1}
-
-      return {}
+		return []
 
     },
 
 ////////////////////////////////////////////////////////////////////////////////
 
-do_delete_sessions:
+getCurrent:
 
     function () {
 
-      this.user = null
-
-      return {}
+		  return this.user
 
     },
 

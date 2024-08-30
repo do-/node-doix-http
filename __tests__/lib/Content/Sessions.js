@@ -2,21 +2,25 @@ module.exports = {
     
 ////////////////////////////////////////////////////////////////////////////////
 
-select_users:
+doCreate:
 
     function () {
 
-		return []
+      this.user = {id: 1}
+
+      return {}
 
     },
 
 ////////////////////////////////////////////////////////////////////////////////
 
-get_current_of_users:
+doDelete:
 
     function () {
 
-		  return this.user
+      this.user = null
+
+      return {}
 
     },
 
