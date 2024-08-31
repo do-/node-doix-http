@@ -39,9 +39,6 @@ test ('no method', async () => {
 
 	const rp = await getResponseFromWebService ('/?type=userz', {method: 'POST', body: '{}'})
 
-	console.log (rp.statusCode)
-	console.log (rp.responseJson)
-
 	expect (rp.responseJson.success).toBe (false)
 
 })
@@ -53,6 +50,16 @@ test ('200', async () => {
 	expect (rp.statusCode).toBe (200)
 	expect (rp.headers ['content-type']).toBe ('application/json; charset=utf-8')
 	expect (rp.responseJson).toStrictEqual ({success: true, content: []})
+
+})
+
+test ('stream', async () => {
+
+	const rp = await getResponseFromWebService ('/?type=users&part=stream', {method: 'POST', body: '{}'})
+
+	expect (rp.statusCode).toBe (200)
+	expect (rp.headers ['content-type']).toBe ('application/json')
+	expect (rp.responseJson).toStrictEqual ([])
 
 })
 

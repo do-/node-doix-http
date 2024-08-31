@@ -1,3 +1,5 @@
+const {Readable} = require ('stream'); 
+
 module.exports = {
     
 ////////////////////////////////////////////////////////////////////////////////
@@ -6,7 +8,17 @@ getList:
 
     function () {
 
-		return []
+		 return []
+
+    },
+
+////////////////////////////////////////////////////////////////////////////////
+
+getStream:
+
+    function () {
+
+		 return Readable.from ('[]')
 
     },
 

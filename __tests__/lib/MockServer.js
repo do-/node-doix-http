@@ -45,7 +45,7 @@ module.exports = {
 
 			rp.responseText = Buffer.concat (a).toString ()
 			
-			if (rp.headers ['content-type'] === 'application/json; charset=utf-8') rp.responseJson = JSON.parse (rp.responseText)
+			if (rp.headers ['content-type'].slice (0, 16) === 'application/json') rp.responseJson = JSON.parse (rp.responseText)
 
 			return rp
 
