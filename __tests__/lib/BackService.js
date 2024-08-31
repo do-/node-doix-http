@@ -59,7 +59,7 @@ module.exports = class extends WebService {
 				stringify: (err, job) => JSON.stringify (
 					{
 						success: false,
-						id: job.uuid,
+						id: job.id,
 						dt: new Date ().toJSON ()
 					}
 				)

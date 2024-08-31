@@ -35,6 +35,17 @@ test ('constructor', () => {
 
 })
 
+test ('no method', async () => {
+
+	const rp = await getResponseFromWebService ('/?type=userz', {method: 'POST', body: '{}'})
+
+	console.log (rp.statusCode)
+	console.log (rp.responseJson)
+
+	expect (rp.responseJson.success).toBe (false)
+
+})
+
 test ('200', async () => {
 
 	const rp = await getResponseFromWebService ('/?type=users', {method: 'POST', body: '{}'})
