@@ -1,4 +1,7 @@
-const {WebService, HttpParamReader, HttpResultWriter} = require ('../..')
+const {WebService} = require ('../..')
+const {Job} = require ('doix')
+const createError          = require ('http-errors')
+const {HttpRequestContext} = require ('http-server-tools')
 
 module.exports = class extends WebService {
 
@@ -10,62 +13,24 @@ module.exports = class extends WebService {
 	    
 			methods: ['POST'],
 
-			reader: new HttpParamReader ({
-				from: {
-					searchParams: true,
-					bodyString: s => JSON.parse (s),
-				}
-			}),
+			stringify: content => JSON.stringify ({success: true, content}),
 
-			on: {
+			createError: cause => {
 
-				error : function (error) {
+				const o = {success: false, dt: new Date ()}
 
-					if (typeof error === 'string') error = Error (error)
-					
-					while (error.cause) error = error.cause
-					
-					this.error = error
+				const {INSTANCE} = Job; if (INSTANCE in cause) o.id = cause [INSTANCE].id
 
-				},
+				const error = createError (500, JSON.stringify (o))
+
+				error.expose = true
+
+				error [HttpRequestContext.CONTENT_TYPE] = 'application/json'
+
+				return error
 
 			},
-
-			writer: new HttpResultWriter ({
-
-				type: 'application/json',
-
-				stringify: content => {
-				
-					return JSON.stringify ({
-						success: true, 
-						content, 
-					})
-				
-				}
-
-			}),
-
-			dumper: new HttpResultWriter ({
-
-				code: err =>
-
-					/^[1-5]\d\d$/.test (err.statusCode) ? err.statusCode :
-
-					500,
-
-				type: 'application/json',
-
-				stringify: (err, job) => JSON.stringify (
-					{
-						success: false,
-						id: job.id,
-						dt: new Date ().toJSON ()
-					}
-				)
-				
-			}),
-			
+		
 			...o
 
 	    })

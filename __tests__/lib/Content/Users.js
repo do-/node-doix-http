@@ -1,4 +1,5 @@
 const {Readable} = require ('stream'); 
+//const {HttpRequestContext} = require ('http-server-tools')
 
 module.exports = {
     
@@ -14,11 +15,33 @@ getList:
 
 ////////////////////////////////////////////////////////////////////////////////
 
+getOne:
+
+    function () {
+
+		return 1
+
+    },
+
+////////////////////////////////////////////////////////////////////////////////
+
+doNothing:
+
+    function () {
+
+    },
+
+////////////////////////////////////////////////////////////////////////////////
+
 getStream:
 
     function () {
 
-		 return Readable.from ('[]')
+        const result = Readable.from ('[]')
+
+        this.http.contentType = 'application/json'
+
+		return result
 
     },
 

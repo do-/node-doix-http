@@ -1,7 +1,8 @@
 const Path = require ('path')
 const Application = require ('./lib/Application.js')
 const {getResponse} = require ('./lib/MockServer.js')
-const {HttpStaticSite} = require ('protocol-agnostic-router')
+const {HttpStaticSite} = require ('http-server-tools')
+const {Router} = require ('protocol-agnostic-router')
 
 const app = () => {
 
@@ -13,11 +14,17 @@ const app = () => {
 
 async function getResponseFromWebService (path, requestOptions, serviceOptions) {
 
+	const staticSite = new HttpStaticSite ({root: Path.resolve ('__tests__/data')})
+
+	staticSite [Router.PROCESS_MESSAGE] = response => {
+		staticSite.handle (response).then (_ => _, _ => _)
+	}
+
 	return getResponse ({service: [
 
 		app ().createBackService (serviceOptions),
 
-		new HttpStaticSite ({root: Path.resolve ('__tests__/data')}),
+		staticSite,
 
 	], path, requestOptions})
 
@@ -50,6 +57,30 @@ test ('200', async () => {
 	expect (rp.statusCode).toBe (200)
 	expect (rp.headers ['content-type']).toBe ('application/json; charset=utf-8')
 	expect (rp.responseJson).toStrictEqual ({success: true, content: []})
+
+})
+
+test ('bad type', async () => {
+
+	const rp = await getResponseFromWebService ('/?type=users', {method: 'POST', body: '{"part": "one"}'})
+	expect (rp.statusCode).toBe (200)
+	expect (rp.responseText).toBe ('')
+
+})
+
+test ('bad type, ignored', async () => {
+
+	const rp = await getResponseFromWebService ('/?type=users', {method: 'POST', body: '{"part": "one"}'}, {getRequest: ctx => ctx.searchParams})
+	expect (rp.statusCode).toBe (200)
+	expect (rp.responseJson).toStrictEqual ({success: true, content: []})
+
+})
+
+test ('empty response', async () => {
+
+	const rp = await getResponseFromWebService ('/?type=users', {method: 'POST', body: '{"action": "nothing"}'})
+	expect (rp.statusCode).toBe (200)
+	expect (rp.responseJson).toStrictEqual ({success: true, content: null})
 
 })
 

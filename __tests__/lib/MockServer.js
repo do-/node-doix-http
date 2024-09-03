@@ -44,8 +44,14 @@ module.exports = {
 			const a = []; for await (b of rp) a.push (b)
 
 			rp.responseText = Buffer.concat (a).toString ()
-			
-			if (rp.headers ['content-type'].slice (0, 16) === 'application/json') rp.responseJson = JSON.parse (rp.responseText)
+
+			{
+
+				const ct = rp.headers ['content-type']
+
+				if (ct && ct.slice (0, 16) === 'application/json') rp.responseJson = JSON.parse (rp.responseText)
+
+			}
 
 			return rp
 

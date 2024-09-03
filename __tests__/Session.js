@@ -2,7 +2,6 @@ const Path = require ('path')
 const Application = require ('./lib/Application.js')
 const TestCookieSession = require ('./lib/TestCookieSession.js')
 const {getResponse} = require ('./lib/MockServer.js')
-const {HttpStaticSite} = require ('protocol-agnostic-router')
  
 const newApp = () => {
 
@@ -27,8 +26,6 @@ async function getResponseFromWebService (svc, path, requestOptions, port) {
 	return getResponse ({service: [
 
 		svc,
-
-		new HttpStaticSite ({root: Path.resolve ('__tests__/data')}),
 
 	], path, requestOptions, listen: {port}})
 
