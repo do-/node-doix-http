@@ -11,10 +11,13 @@ test ('rudimentary', async () => {
 	expect (() => new CookieSession ({name: 'sid', ttl: '30'})).toThrow ()
 	expect (() => new CookieSession ({name: 'sid', ttl: Infinity})).toThrow ()
 	expect (() => new CookieSession ({name: 'sid', ttl: 0})).toThrow ()
+	expect (() => new CookieSession ({name: 'sid', ttl: 30, attr: {expires: new Date ()}})).toThrow ()
+	expect (() => new CookieSession ({name: 'sid', ttl: 30, attr: {maxAge: 1000}})).toThrow ()
 
 	const s = new CookieSession ({name: 'sid', ttl: 30})
 
 	expect (s.attr.httpOnly).toBe (true)
+	expect (s.attr.maxAge).toBe (1800)
 
 	expect (await s.getDb ()).toBeUndefined ()
 	expect (await s.storeUser ()).toBeUndefined ()
