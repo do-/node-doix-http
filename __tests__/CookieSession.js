@@ -2,7 +2,10 @@ const {CookieSession} = require ('..')
  
 test ('rudimentary', async () => {
 
-	const s = new CookieSession ()
+	expect (() => new CookieSession ()).toThrow ()
+	expect (() => new CookieSession (0)).toThrow ()
+
+	const s = new CookieSession ({})
 
 	expect (await s.getDb ()).toBeUndefined ()
 	expect (await s.storeUser ()).toBeUndefined ()

@@ -2,6 +2,15 @@ const {CookieSession} = require ('../..')
 
 module.exports = class extends CookieSession {
 
+	constructor (options = {}) {
+
+		super ({
+			name: 'sid',
+			...options
+		})
+
+	}
+
 	getDb (job) {
 
 		return job.app.sessions
