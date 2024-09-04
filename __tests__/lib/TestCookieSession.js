@@ -6,6 +6,7 @@ module.exports = class extends CookieSession {
 
 		super ({
 			name: 'sid',
+			ttl: 30,
 			...options
 		})
 
