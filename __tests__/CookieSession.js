@@ -14,10 +14,14 @@ test ('rudimentary', async () => {
 
 	const s = new CookieSession ({name: 'sid', ttl: 30})
 
+	expect (s.attr.httpOnly).toBe (true)
+
 	expect (await s.getDb ()).toBeUndefined ()
 	expect (await s.storeUser ()).toBeUndefined ()
 	expect (await s.finishSession ()).toBeUndefined ()
 
 	await expect (s.getUserBySessionId ()).rejects.toThrow ()
+
+	expect (new CookieSession ({name: 'sid', ttl: 30, attr: {httpOnly: false}}).attr.httpOnly).toBe (false)
 
 })
