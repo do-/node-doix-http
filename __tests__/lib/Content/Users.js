@@ -19,7 +19,9 @@ getOne:
 
     function () {
 
-		return 1
+        this.on ('error', () => this.error = 1)
+
+		throw 1
 
     },
 

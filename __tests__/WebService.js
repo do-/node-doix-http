@@ -60,7 +60,7 @@ test ('200', async () => {
 
 })
 
-/*
+
 test ('bad type', async () => {
 
 	const rp = await getResponseFromWebService ('/?type=users', {method: 'POST', body: '{"part": "one"}'})
@@ -68,7 +68,7 @@ test ('bad type', async () => {
 	expect (rp.responseText).toBe ('')
 
 })
-*/	
+	
 
 test ('bad type, ignored', async () => {
 

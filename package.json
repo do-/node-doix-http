@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/do-/node-doix-http#readme",
   "peerDependencies": {
-    "doix": "^1.0.47",
+    "doix": "^1.0.48",
     "protocol-agnostic-router": "^1.0.1"
   },
   "devDependencies": {
