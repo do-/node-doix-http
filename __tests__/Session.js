@@ -60,8 +60,8 @@ test ('auth', async () => {
 	expect (rp1.responseJson.content).toStrictEqual (user)
 
 	const rp2 = await getResponseFromWebService (svc, '/?type=sessions&action=delete', {method: 'POST', body: '{}', headers: {Cookie: `sid=${sid}`}}, 8023)
-
 	expect (rp2.headers ['set-cookie'] [0]).toMatch ('sid=;')
+	expect (rp2.headers ['set-cookie'] [0]).toMatch ('Max-Age=0;')
 
 	expect (app.sessions [sid]).toBeUndefined ()
 
