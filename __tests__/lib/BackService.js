@@ -2,7 +2,7 @@ const {WebService} = require ('../..')
 const {Job} = require ('doix')
 const createError          = require ('http-errors')
 const {HttpRequestContext} = require ('http-server-tools')
-
+const {Readable} = require ('stream')
 module.exports = class extends WebService {
 
 	constructor (app, o) {
@@ -13,7 +13,7 @@ module.exports = class extends WebService {
 	    
 			methods: ['POST'],
 
-			stringify: content => JSON.stringify ({success: true, content}),
+//			stringify: content => JSON.stringify ({success: true, content}),
 
 			createError: cause => {
 
@@ -28,6 +28,18 @@ module.exports = class extends WebService {
 				error [HttpRequestContext.CONTENT_TYPE] = 'application/json'
 
 				return error
+
+			},
+
+			on: {
+
+				end: function () {
+
+					if (this.result instanceof Readable) return
+
+					this.result = {success: true, content: this.result ?? null}
+
+				}
 
 			},
 		
