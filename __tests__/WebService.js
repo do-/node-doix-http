@@ -3,6 +3,7 @@ const Application = require ('./lib/Application.js')
 const {getResponse} = require ('./lib/MockServer.js')
 const {HttpStaticSite} = require ('http-server-tools')
 const {Router} = require ('protocol-agnostic-router')
+const {WebService} = require ('..')
 
 const app = () => {
 
@@ -31,6 +32,12 @@ async function getResponseFromWebService (path, requestOptions, serviceOptions) 
 }
 
 test ('constructor', () => {
+
+	expect (() => new WebService (app (), {name: 'ws'})).toThrow ('methods')
+
+	expect (() => new WebService (app (), {name: 'ws', methods: 'POST'})).toThrow ('methods')
+
+	expect (() => new WebService (app (), {name: 'ws', methods: []})).toThrow ('methods')
 
 	expect (() => app ().createBackService ({location: 1})).toThrow ()
 
