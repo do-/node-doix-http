@@ -47,6 +47,10 @@ test ('constructor', () => {
 
 	expect (() => app ().createBackService ({location: '/_back', test: s => true})).toThrow ()
 
+	expect (app ().createBackService ({}).ctxOptions.pathBase).toBe (0)
+	expect (app ().createBackService ({location: '/_back'}).ctxOptions.pathBase).toBe (1)
+	expect (app ().createBackService ({location: '/_back/'}).ctxOptions.pathBase).toBe (1)
+
 })
 
 test ('no method', async () => {
