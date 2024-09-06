@@ -71,7 +71,6 @@ test ('200', async () => {
 
 })
 
-
 test ('bad type', async () => {
 
 	const rp = await getResponseFromWebService ('/?type=users', {method: 'POST', body: '{"part": "one"}'})
@@ -80,7 +79,6 @@ test ('bad type', async () => {
 
 })
 	
-
 test ('bad type, ignored', async () => {
 
 	const rp = await getResponseFromWebService ('/?type=users', {method: 'POST', body: '{"part": "one"}'}, {getRequest: ctx => ctx.searchParams})
