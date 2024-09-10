@@ -1,7 +1,6 @@
 const {WebService} = require ('../..')
 const {Job} = require ('doix')
 const createError          = require ('http-errors')
-const {HttpRequestContext} = require ('http-server-tools')
 const {Readable} = require ('stream')
 module.exports = class extends WebService {
 
@@ -13,19 +12,13 @@ module.exports = class extends WebService {
 	    
 			methods: ['POST'],
 
-//			stringify: content => JSON.stringify ({success: true, content}),
-
 			createError: cause => {
 
 				const o = {success: false, dt: new Date ()}
 
 				const {INSTANCE} = Job; if (INSTANCE in cause) o.id = cause [INSTANCE].id
 
-				const error = createError (500, JSON.stringify (o))
-
-				error.expose = true
-
-				error [HttpRequestContext.CONTENT_TYPE] = 'application/json'
+				const error = createError (500, JSON.stringify (o), {expose: true, headers: {'content-type': 'application/json'}})
 
 				return error
 
